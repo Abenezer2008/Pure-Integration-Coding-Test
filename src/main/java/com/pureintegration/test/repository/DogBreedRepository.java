@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 @Repository
 public class DogBreedRepository {
@@ -23,7 +23,7 @@ public class DogBreedRepository {
     public void loadData() throws IOException {
         InputStream inputStream = resource.getInputStream();
         objectMapper = new ObjectMapper();
-        dogBreedMap = objectMapper.readValue(inputStream, HashMap.class);
+        dogBreedMap = objectMapper.readValue(inputStream, TreeMap.class);
     }
 
     public Map<String, List<String>> getDogBreedMap() {
