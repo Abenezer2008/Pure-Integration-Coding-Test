@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -58,12 +59,23 @@ public class TestDogBreedController {
     }
 
     @Test
-    public void controllerShouldPass(){
+    public void responseStatusShouldPass(){
         Mockito.when(dogBreedService.getAll()).thenReturn(expectedDTO);
 
         ResponseEntity responseEntity = dogBreedController.getBreeds();
 
         assertNotNull(responseEntity);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+    }
+
+    @Test
+    public void responseBodyShouldPass(){
+        Mockito.when(dogBreedService.getAll()).thenReturn(expectedDTO);
+
+        ResponseEntity responseEntity = dogBreedController.getBreeds();
+
+        assertNotNull(responseEntity);
+        HashMap response = (HashMap) responseEntity.getBody();
+        assertEquals(response,expectedDTO.getDogBreedResponse());
     }
 }
