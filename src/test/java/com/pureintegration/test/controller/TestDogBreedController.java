@@ -62,7 +62,7 @@ public class TestDogBreedController {
     public void responseStatusShouldPass(){
         Mockito.when(dogBreedService.getAll()).thenReturn(expectedDTO);
 
-        ResponseEntity responseEntity = dogBreedController.getBreeds();
+        ResponseEntity<?> responseEntity = dogBreedController.getBreeds();
 
         assertNotNull(responseEntity);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
